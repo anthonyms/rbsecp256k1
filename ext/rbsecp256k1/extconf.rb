@@ -80,19 +80,8 @@ else
   recipe.activate
 
   # Need to add paths to includes and libraries for library for build
-  append_cflags(
-    [
-      "-I#{recipe.path}/include",
-      "-fPIC",
-      "-Wno-undef",
-      "-Wall"
-    ]
-  )
-  append_ldflags(
-    [
-      "-Wl,--no-as-needed"
-    ]
-  )
+  $INCFLAGS << " -I#{recipe.path}/include"
+  $CFLAGS << " -fPIC -Wno-undef -Wall"
   # rubocop:disable Style/GlobalVars
   $LIBPATH = ["#{recipe.path}/lib"] | $LIBPATH
   # rubocop:enable Style/GlobalVars
